@@ -11,7 +11,7 @@ import {
   ChevronRight, Info, AlertTriangle,
   Eye, Zap, Database,
   Globe, LayoutDashboard, Search, Bell,
-  BookOpen, ShieldCheck, Key, Cpu, Wifi, Code, Settings
+  BookOpen, ShieldCheck, Key, Cpu, Wifi, Code, Settings, Heart
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from './lib/utils';
@@ -23,6 +23,11 @@ import { OfflineMode } from './components/OfflineMode';
 import { SettingsPanel } from './components/SettingsPanel';
 import { HistoricalComparison } from './components/HistoricalComparison';
 import { AlertConfiguration } from './components/AlertConfiguration';
+import { WeatherIntegration } from './components/WeatherIntegration';
+import { EcosystemHealth } from './components/EcosystemHealth';
+import { SensorNetwork } from './components/SensorNetwork';
+import { MLInsights } from './components/MLInsights';
+import { DeploymentLinks } from './components/DeploymentLinks';
 import { notificationService } from './services/notificationService';
 
 declare global {
@@ -1119,6 +1124,9 @@ export default function App() {
         <div className="flex bg-white/50 backdrop-blur-md p-1.5 rounded-2xl border border-white/20 shadow-sm overflow-x-auto max-w-full">
           {[
             { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+            { id: 'sensors', label: 'Sensors', icon: Wifi },
+            { id: 'health', label: 'Health', icon: Heart },
+            { id: 'weather', label: 'Weather', icon: Sun },
             { id: 'species', label: 'Species ID', icon: Search },
             { id: 'analytics', label: 'Analytics', icon: Database },
             { id: 'ailab', label: 'AI Lab', icon: Sparkles },
@@ -1454,9 +1462,43 @@ export default function App() {
                 <NatureChat />
                 <MapPreview />
                 <HistoricalComparison />
+                <WeatherIntegration />
               </div>
             </div>
           </motion.div>
+          )}
+
+          {activeTab === 'sensors' && (
+            <motion.div 
+              key="sensors"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+            >
+              <SensorNetwork />
+            </motion.div>
+          )}
+
+          {activeTab === 'health' && (
+            <motion.div 
+              key="health"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+            >
+              <EcosystemHealth />
+            </motion.div>
+          )}
+
+          {activeTab === 'weather' && (
+            <motion.div 
+              key="weather"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+            >
+              <WeatherIntegration />
+            </motion.div>
           )}
 
           {activeTab === 'species' && (
@@ -1508,6 +1550,8 @@ export default function App() {
               exit={{ opacity: 0, y: -20 }}
               className="space-y-8"
             >
+              <DeploymentLinks />
+              
               <div className="glass p-12 rounded-[40px] space-y-12">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                   <div className="space-y-2">
@@ -1709,6 +1753,7 @@ await genie.simulate({
               exit={{ opacity: 0, y: -20 }}
               className="space-y-8"
             >
+              <MLInsights />
               <AILab />
               <AlertConfiguration />
             </motion.div>
