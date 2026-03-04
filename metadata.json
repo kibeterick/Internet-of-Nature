@@ -1,0 +1,7 @@
+{
+  "name": "Internet of Nature",
+  "description": "A platform bridging urban ecology and technology to monitor and sustain urban nature through real-time data and AI insights.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
